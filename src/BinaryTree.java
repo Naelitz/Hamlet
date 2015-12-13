@@ -28,7 +28,10 @@ public class BinaryTree<T> extends LinkedList<T>
 	{
 		current = first;
 		if (current == null) first = node;
-		else if (current.compareTo(node))
+		else if (current.compare(node)>0)
+		{
+			
+		}
 	}
 	
 	void nodeAdd(TreeNode<T> node)

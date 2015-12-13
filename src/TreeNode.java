@@ -1,5 +1,5 @@
 
-public class TreeNode <T>
+public class TreeNode <T> implements Comparable 
 {
 	T value; // makes value general so it can be any type.
 	int count;
@@ -29,6 +29,18 @@ public class TreeNode <T>
 	void getRightChild()
 	{
 		
+	}
+	
+	public String toString()
+	{
+		String string = (String)value;
+		return string;
+	}
+	
+	int compare(TreeNode<T> node)
+	{
+		int compared = String.valueOf(value).compareTo(node.toString());
+		return compared;
 	}
 	
 	
