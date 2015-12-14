@@ -13,13 +13,14 @@ import java.io.IOException;
 public class Main
 {
 	// Shows Main where to find the text document.
-	static String FILE_NAME = "C:/Users/david_000/Downloads/DavidNaelitzWorkspace/workspace/HamletLists/src/bible.txt";
+	static String FILE_NAME = "C:/Users/david_000/Downloads/DavidNaelitzWorkspace/EECS-2500NaelitzDavid/HamletLists/Hamlet/src/Hamlet.txt";
 
 	static LinkedList<String> link = new LinkedList<>();
 	static FileReader fileReader;
-	static SortedLinkedList sorted;
-	static SelfAdjustingList selfAdjust;
-	static SelfAdjustingBubble selfBubble;
+	static SortedLinkedList<String> sorted;
+	static SelfAdjustingList<String> selfAdjust;
+	static SelfAdjustingBubble<String> selfBubble;
+	static BinaryTree<String> bTree;
 	static int count = 0;
 	static int totalCount = 0;
 
@@ -212,6 +213,32 @@ public class Main
 				}
 				selfBubble.link.remove();
 			}
+		} catch (FileNotFoundException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try
+		{
+			count = 0;
+			totalCount = 0;
+			
+			// this will be the start time for the bubble sort list.
+			long bTreeStart = System.currentTimeMillis();
+			fileReader = new FileReader(FILE_NAME);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+			// while there is still input continue to create the list.
+			while ((line = bufferedReader.readLine()) != null)
+			{
+				bTree.createList(line);
+
+			}
+			System.out.println("BTREE " + (System.currentTimeMillis() - bTreeStart) + " ms.");
+
+			// while the list is not empty continue to count.
+			bTree.link.stat();
 		} catch (FileNotFoundException e)
 		{
 			// TODO Auto-generated catch block

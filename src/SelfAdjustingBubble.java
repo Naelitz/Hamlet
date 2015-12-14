@@ -29,7 +29,7 @@ public class SelfAdjustingBubble<T> extends LinkedList<T>
 
 		if (first == null)	// If the list is empty just add the node. 
 		{
-			add(node);
+			nodeAdd(node);
 		}
 
 		else
@@ -62,7 +62,15 @@ public class SelfAdjustingBubble<T> extends LinkedList<T>
 				previous = current;
 				current = current.getLink();
 			}
-			add(node);
+			nodeAdd(node);
 		}
+	}
+	
+	void nodeAdd(Node<T> node)
+	{
+		node.setLink(first);
+		node.count++;
+		first = node;
+		length++;
 	}
 }

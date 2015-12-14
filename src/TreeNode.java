@@ -1,34 +1,37 @@
 
-public class TreeNode <T> implements Comparable 
+public class TreeNode <T>
 {
 	T value; // makes value general so it can be any type.
-	int count;
-	TreeNode<T> next; 
+	int count = 1; 
+	TreeNode<T> leftChild;
+	TreeNode<T> rightChild;
 	
 	TreeNode(T symbol)
 	{
 		value = symbol;
+		leftChild = null;
+		rightChild = null;
 		
 	}
 	
-	void setLeftChild()
+	void setLeftChild(TreeNode<T> node)
 	{
-		
+		leftChild = node;
 	}
 	
-	void setRightChild()
+	void setRightChild(TreeNode<T> node)
 	{
-		
+		rightChild = node;
 	}
 	
-	void getLeftChild()
+	TreeNode<T> getLeftChild()
 	{
-		
+		return leftChild;
 	}
 	
-	void getRightChild()
+	TreeNode<T> getRightChild()
 	{
-		
+		return rightChild;
 	}
 	
 	public String toString()

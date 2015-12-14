@@ -2,13 +2,20 @@
 //in a text document in alphabetical order. Using compareTo if the 
 //number is < 0 then branch left, if number is > 0 branch right.
 //If the number is ==0 then increment count. 
-public class BinaryTree<T> extends LinkedList<T>
+public class BinaryTree<T>
 {
+	int distinct = 0;
+	int totalCount = 0;
+	int comparisons = 0;
+	int addedNodes = 0;
+	
+	
 	TreeNode<T> first;
 	int length = 0;
-	TreeNode<T> current;	
-	TreeNode<T> leftChild;
-	TreeNode<T> rightChild;
+	TreeNode<T> current;
+	int referenceChange;
+	int compared;
+	
 	static BinaryTree<String> link = new BinaryTree<>();
 	
 	static void createList(String line)
@@ -27,15 +34,78 @@ public class BinaryTree<T> extends LinkedList<T>
 	void add(TreeNode<T> node)
 	{
 		current = first;
-		if (current == null) first = node;
-		else if (current.compare(node)>0)
-		{
-			
-		}
+		if (first == null) 
+			{
+				first = node;
+				referenceChange+=1;
+			}
+		else
+			{
+				compared = current.compare(node);	
+				comparisons+=1;
+				
+				do
+				{
+					if(compared == 0)current.count+=1;
+					else if(compared > 0)
+					{
+						if(current.getRightChild() == null)
+						{
+							current.setRightChild(node);
+							referenceChange+=1;
+							break;
+						}
+						else 
+							{
+								current = current.getRightChild();
+								compared = current.compare(node);
+								comparisons+=1;
+							}
+					}
+					else if(compared < 0)
+					{
+						if(current.getLeftChild() == null)
+						{
+							current.setLeftChild(node);
+							referenceChange+=1;
+							break;
+						}
+						else 
+						{
+							current = current.getLeftChild();
+							compared = current.compare(node);
+							comparisons+=1;
+						}
+					}
+				}while (compared != 0);
+			}
+		
 	}
 	
-	void nodeAdd(TreeNode<T> node)
+	void stat()
 	{
-		if (node)
+		System.out.print("Comparisons made: " + comparisons);
+		System.out.print(" Refrence changes: " + referenceChange);
+		System.out.print(" Total words: " + sum(first));
+		System.out.print(" Distinct words: " + distinct);
+		
 	}
+	
+	int sum(TreeNode<T> node)
+	{
+		int result = node.count;
+		if(node.getLeftChild() != null)
+		{
+			distinct+= 1;
+			result += sum(node.getLeftChild());
+		}
+		if(node.getRightChild() != null)
+		{
+			distinct+= 1;
+			result += sum(node.getRightChild());
+		}
+		return result;
+	}
+	
+	
 }
