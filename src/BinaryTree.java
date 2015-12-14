@@ -34,21 +34,23 @@ public class BinaryTree<T>
 	void add(TreeNode<T> node)
 	{
 		current = first;
+		//If tree is empty set root.
 		if (first == null) 
 			{
 				first = node;
 				referenceChange+=1;
 			}
+		//else compare and search tree for corrent leaf location.
 		else
-			{
-				compared = current.compare(node);	
-				comparisons+=1;
-				
+			{	
 				do
 				{
 					compared = current.compare(node);
 					comparisons+=1;
+					//If the compared node is the same increment count.
 					if(compared == 0)current.count+=1;
+					//If it is greater then compared node follow branch right
+					//if that branch is empty place leaf.
 					else if(compared > 0)
 					{
 						if(current.getRightChild() == null)
@@ -63,6 +65,8 @@ public class BinaryTree<T>
 								comparisons+=1;
 							}
 					}
+					//If it is less then compared node follow branch left
+					//if that branch is empty place leaf.
 					else if(compared < 0)
 					{
 						if(current.getLeftChild() == null)
@@ -90,11 +94,13 @@ public class BinaryTree<T>
 		System.out.print(" Distinct words: " + distinct);
 		
 	}
-	
+	//This will recursively add the count value of every node in the tree.
 	int sum(TreeNode<T> node)
 	{
+		//Add the count of the current node called
 		int result = node.count;
 		distinct+=1;
+		//If branches are not empty call those as well.
 		if(node.getLeftChild() != null)
 		{
 			result += sum(node.getLeftChild());

@@ -7,6 +7,7 @@ public class SelfAdjustingList<T> extends LinkedList<T>
 		static SelfAdjustingList<String> link = new SelfAdjustingList<>();
 		static int totalCount = 0;
 		static int count = 0;
+		static int comparisons = 0;
 		
 		static void createList(String line)
 		{
@@ -39,6 +40,7 @@ public class SelfAdjustingList<T> extends LinkedList<T>
 				
 				// if the first node is the same as the new node
 				// just increase the count and return. 
+				comparisons++;
 				if (first.value.equals(node.value.toString()))
 				{
 					first.count++;
@@ -47,21 +49,27 @@ public class SelfAdjustingList<T> extends LinkedList<T>
 				
 				// While not at the end of the list continue to traverse until you 
 				// find the correct node. 
-				while (current.getLink() != null)
+				else while (current.getLink() != null)
 				{
 					// If the correct node is found then add to the count
 					// move the node to the front of the list and correct
 					// the links. 
+					comparisons++;
 					if (current.value.equals(node.value.toString()))
 					{
 						current.count++;
+						referenceChange+=2;
 						previous.setLink(current.getLink());
 						current.setLink(first);
 						first = current;
 						return;
 					}
-					previous = current;
-					current = current.getLink();
+					else
+						{
+							previous = current;
+						
+							current = current.getLink();
+						}
 				}
 				nodeAdd(node);
 			}
@@ -70,6 +78,7 @@ public class SelfAdjustingList<T> extends LinkedList<T>
 		void nodeAdd(Node<T> node)
 		{
 			node.setLink(first);
+			referenceChange++;
 			node.count++;
 			first = node;
 			length++;

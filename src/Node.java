@@ -2,7 +2,7 @@
 public class Node <T>
 {
 	T value; // makes value general so it can be any type.
-	int count;
+	int count = 1;
 	Node<T> next; 
 	
 	Node(T symbol)

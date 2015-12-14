@@ -3,6 +3,8 @@
 
 public class LinkedList<T> // makes a general class
 {
+	int referenceChange = 0;
+	long comparisons = 0;
 	Node<T> first;
 	int length = 0;
 	Node<T> current;	// Keeps track of the node being looked at.
@@ -17,6 +19,7 @@ public class LinkedList<T> // makes a general class
 	void add(Node<T> node)
 	{
 		node.setLink(first);
+		referenceChange++;
 		node.count++;
 		first = node;
 		length++;
@@ -37,6 +40,7 @@ public class LinkedList<T> // makes a general class
 		current = first;
 		while (current.getLink() != null)
 		{
+			comparisons++;
 			if (current.value.equals(s))
 			{
 				current.count++;
@@ -50,6 +54,7 @@ public class LinkedList<T> // makes a general class
 	void nodeAdd(Node<T> node)
 	{
 		node.setLink(first);
+		referenceChange++;
 		node.count++;
 		first = node;
 		length++;

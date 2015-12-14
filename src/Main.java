@@ -13,7 +13,7 @@ import java.io.IOException;
 public class Main
 {
 	// Shows Main where to find the text document.
-	static String FILE_NAME = "C:/Users/david_000/Downloads/DavidNaelitzWorkspace/EECS-2500NaelitzDavid/HamletLists/Hamlet/src/Hamlet.txt";
+	static String FILE_NAME = "C:/Users/david_000/Desktop/EECS-2500NaelitzDavid/Hamlet/src/Hamlet.txt";
 
 	static LinkedList<String> link = new LinkedList<>();
 	static FileReader fileReader;
@@ -87,10 +87,13 @@ public class Main
 				count++;
 				link.remove();
 			}
-			System.out.print("Total Count: " + totalCount);
-			System.out.println(" Count: " + count);
-
 			System.out.println("The unsorted list took " + (System.currentTimeMillis() - unsortStart) + " ms.");
+			System.out.print("Total Word Count: " + totalCount);
+			System.out.print(" Distinct Count: " + count);
+			System.out.print(" Comparisons: " + link.comparisons);
+			System.out.println(" Reference Changes: " + link.referenceChange);
+
+			
 		} catch (FileNotFoundException e)
 		{
 			// TODO Auto-generated catch block
@@ -123,11 +126,13 @@ public class Main
 				count++;
 				sorted.link.remove();
 			}
-			System.out.print("Total Count: " + totalCount);
-			System.out.println(" Count: " + count);
+			System.out.println("The alphabetically sorted list took " + (System.currentTimeMillis() - abcStart) + " ms.");
+			System.out.print("Total Word Count: " + totalCount);
+			System.out.print(" Distinct Count: " + count);
+			System.out.print(" Comparisons: " + sorted.comparisons);
+			System.out.println(" Reference Changes: " + sorted.link.referenceChange);
 
-			System.out
-					.println("The alphabetically sorted list took " + (System.currentTimeMillis() - abcStart) + " ms.");
+			
 		} catch (FileNotFoundException e)
 		{
 			// TODO Auto-generated catch block
@@ -161,15 +166,17 @@ public class Main
 				// Because this is one of the self sorting lists this
 				// makes sure to print off the first 100 words along
 				// with the number of times that word was used.
-				/*if (count <= 100)
+				if (count <= 100)
 				{
-					System.out.println(selfAdjust.link.first.value.toString());
+					System.out.print(selfAdjust.link.first.value.toString());
 					System.out.println(" <- word count: " + selfAdjust.link.first.count);
-				}*/
+				}
 				selfAdjust.link.remove();
 			}
 			System.out.print("Total Count: " + totalCount);
-			System.out.println(" Count: " + count);
+			System.out.print(" Count: " + count);
+			System.out.print(" Comparisons: " + selfAdjust.comparisons);
+			System.out.println(" Reference Changes: " + selfAdjust.link.referenceChange);
 
 		}
 
@@ -206,15 +213,17 @@ public class Main
 				// Because this is one of the self sorting lists this
 				// makes sure to print off the first 100 words along
 				// with the number of times that word was used.
-			/*	if (count <= 100)
+				if (count <= 100)
 				{
-					System.out.println(selfBubble.link.first.value.toString());
+					System.out.print(selfBubble.link.first.value.toString());
 					System.out.println(" <- Word Count: " + selfBubble.link.first.count);
-				}*/
+				}
 				selfBubble.link.remove();
 			}
 			System.out.print("Total Count: " + totalCount);
-			System.out.println(" Distinct Count: " + count);
+			System.out.print(" Distinct Count: " + count);
+			System.out.print(" Comparisons: " + selfBubble.comparisons);
+			System.out.println(" Reference Changes: " + selfBubble.link.referenceChange);
 		} catch (FileNotFoundException e)
 		{
 			// TODO Auto-generated catch block
