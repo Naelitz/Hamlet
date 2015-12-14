@@ -46,6 +46,8 @@ public class BinaryTree<T>
 				
 				do
 				{
+					compared = current.compare(node);
+					comparisons+=1;
 					if(compared == 0)current.count+=1;
 					else if(compared > 0)
 					{
@@ -58,7 +60,6 @@ public class BinaryTree<T>
 						else 
 							{
 								current = current.getRightChild();
-								compared = current.compare(node);
 								comparisons+=1;
 							}
 					}
@@ -73,7 +74,6 @@ public class BinaryTree<T>
 						else 
 						{
 							current = current.getLeftChild();
-							compared = current.compare(node);
 							comparisons+=1;
 						}
 					}
@@ -94,14 +94,13 @@ public class BinaryTree<T>
 	int sum(TreeNode<T> node)
 	{
 		int result = node.count;
+		distinct+=1;
 		if(node.getLeftChild() != null)
 		{
-			distinct+= 1;
 			result += sum(node.getLeftChild());
 		}
 		if(node.getRightChild() != null)
 		{
-			distinct+= 1;
 			result += sum(node.getRightChild());
 		}
 		return result;

@@ -38,6 +38,7 @@ public class SortedLinkedList<T> extends LinkedList<T>
 			}
 
 			else
+			{
 				do // Used a do while to make sure execution happens atleast once. 
 				{
 					// Compares the new node to the current node.
@@ -69,6 +70,7 @@ public class SortedLinkedList<T> extends LinkedList<T>
 					}
 
 				} while (current != null);
+			}
 		}
 	}
 	

@@ -161,15 +161,15 @@ public class Main
 				// Because this is one of the self sorting lists this
 				// makes sure to print off the first 100 words along
 				// with the number of times that word was used.
-				if (count <= 100)
+				/*if (count <= 100)
 				{
 					System.out.println(selfAdjust.link.first.value.toString());
 					System.out.println(" <- word count: " + selfAdjust.link.first.count);
-				}
+				}*/
 				selfAdjust.link.remove();
 			}
-			System.out.println(totalCount);
-			System.out.println(count);
+			System.out.print("Total Count: " + totalCount);
+			System.out.println(" Count: " + count);
 
 		}
 
@@ -206,13 +206,15 @@ public class Main
 				// Because this is one of the self sorting lists this
 				// makes sure to print off the first 100 words along
 				// with the number of times that word was used.
-				if (count <= 100)
+			/*	if (count <= 100)
 				{
 					System.out.println(selfBubble.link.first.value.toString());
 					System.out.println(" <- Word Count: " + selfBubble.link.first.count);
-				}
+				}*/
 				selfBubble.link.remove();
 			}
+			System.out.print("Total Count: " + totalCount);
+			System.out.println(" Distinct Count: " + count);
 		} catch (FileNotFoundException e)
 		{
 			// TODO Auto-generated catch block
